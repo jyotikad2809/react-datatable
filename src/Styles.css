@@ -1,9 +1,41 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  padding: 1rem;
+  border: 1px solid lightgray;
+  text-align: left;
+}
+
+input {
+  min-width: 50%;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+.footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 20px;
+  justify-content: center;
+}
+button {
+  padding: 0.5rem;
+}
+select {
+  min-width: 10%;
+}
+
+tr {
+  cursor: pointer;
+}
+tr:hover {
+  background-color: #ddd;
+}
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.table-head {
-  border: 2px solid black;
-  padding: 5px;
 }
