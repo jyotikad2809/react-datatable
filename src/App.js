@@ -71,7 +71,7 @@ export default function App() {
     );
   }
   return (
-    <>
+    <div className="container">
       <h1>Data Table</h1>
 
       {error && (
@@ -137,6 +137,6 @@ export default function App() {
           Next
         </button>
       </div>
-    </>
+    </div>
   );
 }
