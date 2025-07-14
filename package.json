@@ -14,11 +14,14 @@
     "web-vitals": "^2.1.4",
     "homepage": "https://your-username.github.io/react-datatable"
   },
+  "homepage": "https://jyotiKad2809.github.io/react-datatable",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
