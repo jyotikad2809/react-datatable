@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Styles.css";
+import { AiFillCaretUp } from "react-icons/ai";
+import { AiFillCaretDown } from "react-icons/ai";
 const tableHeader = [
   { id: 0, label: "ID", key: "id" },
   { id: 1, label: "NAME", key: "firstName" },
@@ -15,6 +17,7 @@ export default function App() {
   const [query, setQuery] = useState({});
   const [limit, setLimit] = useState(5);
   const [page, setPage] = useState(1);
+  const [isDesc, setIsDesc] = useState({});
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -70,6 +73,18 @@ export default function App() {
       </button>
     );
   }
+
+  const handleSort = (key) => {
+    setIsDesc((prev) => ({ ...prev, [key]: !prev[key] }));
+
+    if (isDesc[key]) {
+      if (typeof isDesc[key] === "string") {
+        filteredUsers.map((u) => u.key).sort();
+      }
+    } else {
+      return [...filteredUsers].sort((a, b) => b[key] - a[key]);
+    }
+  };
   return (
     <div className="container">
       <h1>Data Table</h1>
@@ -86,7 +101,14 @@ export default function App() {
           <thead>
             <tr>
               {headers.map((th) => (
-                <th key={th.id}>{th.label}</th>
+                <th key={th.id}>
+                  {th.label}{" "}
+                  {isDesc[th.key] ? (
+                    <AiFillCaretDown onClick={() => handleSort(th.key)} />
+                  ) : (
+                    <AiFillCaretUp onClick={() => handleSort(th.key)} />
+                  )}
+                </th>
               ))}
             </tr>
             <tr>
@@ -95,7 +117,7 @@ export default function App() {
                   <input
                     type="text"
                     placeholder={`Search ${th.label}`}
-                    value={query[th.key] || ""}
+                    value={query[th.key]}
                     onChange={(e) => {
                       setQuery((prev) => ({
                         ...prev,
