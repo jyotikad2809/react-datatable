@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Styles.css";
-import { AiFillCaretUp } from "react-icons/ai";
-import { AiFillCaretDown } from "react-icons/ai";
+
 const tableHeader = [
   { id: 0, label: "ID", key: "id" },
   { id: 1, label: "NAME", key: "firstName" },
@@ -74,17 +73,6 @@ export default function App() {
     );
   }
 
-  const handleSort = (key) => {
-    setIsDesc((prev) => ({ ...prev, [key]: !prev[key] }));
-
-    if (isDesc[key]) {
-      if (typeof isDesc[key] === "string") {
-        filteredUsers.map((u) => u.key).sort();
-      }
-    } else {
-      return [...filteredUsers].sort((a, b) => b[key] - a[key]);
-    }
-  };
   return (
     <div className="container">
       <h1>Data Table</h1>
@@ -101,14 +89,7 @@ export default function App() {
           <thead>
             <tr>
               {headers.map((th) => (
-                <th key={th.id}>
-                  {th.label}{" "}
-                  {isDesc[th.key] ? (
-                    <AiFillCaretDown onClick={() => handleSort(th.key)} />
-                  ) : (
-                    <AiFillCaretUp onClick={() => handleSort(th.key)} />
-                  )}
-                </th>
+                <th key={th.id}>{th.label} </th>
               ))}
             </tr>
             <tr>
