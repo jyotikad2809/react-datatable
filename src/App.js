@@ -15,7 +15,6 @@ export default function App() {
   const [query, setQuery] = useState({});
   const [limit, setLimit] = useState(5);
   const [page, setPage] = useState(1);
-  const [isDesc, setIsDesc] = useState({});
 
   useEffect(() => {
     const fetchUsers = async () => {
