@@ -1,9 +1,9 @@
 export default function Datatable({
-  users,
-  headers,
-  loading,
-  error,
-  errorMessage,
+  users = [],
+  headers = [],
+  loading = false,
+  error = false,
+  errorMessage = "",
 }) {
   return (
     <>
