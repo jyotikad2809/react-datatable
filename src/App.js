@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import "./Styles.css";
-import Datatable from "./components /Datatable";
+import Datatable from "./components/Datatable";
 const tableHeader = [
   { id: 0, label: "ID", key: "id" },
   { id: 1, label: "NAME", key: "firstName" },
