@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Datatable from "./components/Datatable";
+
 const tableHeader = [
   { id: 0, label: "ID", key: "id" },
   { id: 1, label: "NAME", key: "firstName" },
@@ -13,9 +14,6 @@ export default function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState({});
-  const [limit, setLimit] = useState(5);
-  const [page, setPage] = useState(1);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -47,6 +45,16 @@ export default function App() {
         error={error}
         errorMessage={"error in fetching data"}
         loading={loading}
+      />
+      <Datatable
+        users={users}
+        headers={headers}
+        error={error}
+        errorMessage={"error in fetching data"}
+        loading={loading}
+        paginator={true}
+        row={5}
+        rowPerPage={[5, 10, 20, 30]}
       />
     </div>
   );
