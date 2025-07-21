@@ -59,4 +59,20 @@ describe("Datatable component", () => {
 
     expect(uniqueIds.size).toBe(ids.length);
   });
+  test("it should display paginator", () => {
+    render(
+      <Datatable
+        users={mockedUsers}
+        headers={mockedHeaders}
+        error={false}
+        errorMessage={"error in fetching data"}
+        loading={false}
+        paginator={true}
+      />
+    );
+    const previousButton = screen.getByRole("button", { name: /prev/i });
+    const nextButton = screen.getByRole("button", { name: /next/i });
+    expect(previousButton).toBeInTheDocument();
+    expect(nextButton).toBeInTheDocument();
+  });
 });
