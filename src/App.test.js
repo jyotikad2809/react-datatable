@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import App from "./App";
 
 beforeEach(() => {
@@ -33,24 +33,20 @@ afterEach(() => {
 test("renders loading and then user data", async () => {
   render(<App />);
 
-  expect(screen.getByText(/loading/i)).toBeInTheDocument();
+  expect(screen.getAllByText(/loading/i)).toHaveLength(2);
 
-  await waitFor(() => {
-    expect(screen.getByText("John")).toBeInTheDocument();
-    expect(screen.getByText("Jane")).toBeInTheDocument();
-  });
+  const johns = await screen.findAllByText("John");
+  const janes = await screen.findAllByText("Jane");
+
+  expect(johns.length).toBe(2);
+  expect(janes.length).toBe(2);
 });
 
 test("shows error when fetch fails", async () => {
-  global.fetch.mockImplementationOnce(() =>
-    Promise.resolve({
-      ok: false,
-    })
-  );
+  global.fetch.mockImplementationOnce(() => Promise.resolve({ ok: false }));
 
   render(<App />);
 
-  await waitFor(() => {
-    expect(screen.getByText("error in fetching data")).toBeInTheDocument();
-  });
+  const errors = await screen.findAllByText("error in fetching data");
+  expect(errors).toHaveLength(2);
 });
