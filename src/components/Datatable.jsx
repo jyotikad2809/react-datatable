@@ -38,7 +38,7 @@ export default function Datatable({
 
   return (
     <div>
-      {loading && <p>Loading...</p>}
+      {loading && <p>...Loading</p>}
       {error && <p>{errorMessage}</p>}
 
       <table>
